@@ -1,0 +1,18 @@
+.widget {
+    width: 250px;
+    margin: 50px auto;
+    padding: 50px;
+    border: 2px solid black;
+}
+
+.widget .starsImages img {
+    width: 40px;
+}
+
+.widget .starsImages img.active {
+    background-color: gold;
+}
+
+.widget .photos .image {
+    width: 100%;
+}
