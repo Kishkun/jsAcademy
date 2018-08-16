@@ -2,7 +2,6 @@ class Counter {
     constructor() {
         this.counterWidgetEl = document.querySelector('[data-role="counterWidget"]');
         this.counterValueEl = null;
-        this._localStorage = new LocalStorageCounter();
     }
 
     render() {
@@ -11,6 +10,8 @@ class Counter {
                 Click counter:
                 <span class='counter' data-role='counter'>0</span>
             </div>`
+        counter.clickCounterListener();
+        counter.savedCounterPrevValue();
     }
 
     findValueEl() {
@@ -26,14 +27,16 @@ class Counter {
         this.counterValueEl = this.findValueEl();
         let currentValue = this.counterValueEl.innerHTML;
         currentValue++;
-        this._localStorage.set(currentValue);
+        this._localStorage = new CounterService();
+        this._localStorage.setItem(currentValue);
         this.counterValueEl.innerHTML = currentValue;
     }
 
     // saved counter value
     savedCounterPrevValue() {
         this.counterValueEl = this.findValueEl();
-        let savedCounterValue = this._localStorage.get();
+        this._localStorage = new CounterService();
+        let savedCounterValue = this._localStorage.getItem();
         if (savedCounterValue != null) {
             this.counterValueEl.innerHTML = savedCounterValue;
         }

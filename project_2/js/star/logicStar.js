@@ -4,7 +4,6 @@ class Star {
         this.starsWidget = document.querySelector('[data-role="starsWidget"]');
         this.stars = null;
         this.activeStars = null;
-        this._localStorage = new LocalStorage();
     }
 
     render() {
@@ -20,6 +19,9 @@ class Star {
             </div>
                 </div>
         `
+
+        star.bindClickListener();
+        star.restorePreviousValue();
     }
 
 
@@ -55,11 +57,13 @@ class Star {
         }
 
         // saved clicked image order number
+        this._localStorage = new StarService();
         this._localStorage.setItem(clickedImageIndex);
     }
 
      restorePreviousValue() {
          this.stars = this._findAllStars();
+         this._localStorage = new StarService();
          let savedValue = this._localStorage.getItem();
         if (savedValue != null) {
             savedValue = +savedValue;

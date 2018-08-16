@@ -4,7 +4,6 @@ class PhotosGallery {
         this.imagesUrls = [];
         this.photoInputEl = null;
         this.photosContainerEl = null;
-        this._localStorage = new LocalStorageGallery();
     }
 
     render() {
@@ -19,6 +18,9 @@ class PhotosGallery {
                 </label>
             </div>
                     `
+
+        photosGallery.bindEnterListener();
+        photosGallery.restorePhotos();
     }
 
     _findInputEl() {
@@ -54,6 +56,7 @@ class PhotosGallery {
                 this.photosContainerEl.append(li);
 
                 // save to localStorage
+                this._localStorage = new GalleryService();
                 this._localStorage.setItem(JSON.stringify(this.imagesUrls));
 
             } else {
@@ -65,6 +68,7 @@ class PhotosGallery {
 
     // restore photos
     restorePhotos() {
+        this._localStorage = new GalleryService();
         let photosStr = this._localStorage.getItem();
         this.photosContainerEl = this._findPhotosContainer();
         if (!!photosStr) {

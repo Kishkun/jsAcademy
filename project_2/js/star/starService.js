@@ -1,4 +1,4 @@
-class LocalStorage {
+class StarService {
     constructor() {
 
     }

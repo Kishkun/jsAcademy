@@ -1,13 +1,13 @@
-class LocalStorageCounter {
+class CounterService {
     constructor() {
 
     }
 
-    set(currentValue) {
+    setItem(currentValue) {
         localStorage.setItem('counter-value', currentValue);
     }
 
-    get() {
+    getItem() {
         return localStorage.getItem('counter-value');
     }
 }

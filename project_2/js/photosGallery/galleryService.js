@@ -1,10 +1,10 @@
-class LocalStorageGallery {
+class GalleryService {
     constructor() {
         this._imagesUrls = [];
     }
 
     setItem(imagesUrls) {
-        localStorage.setItem('images',imagesUrls);
+        localStorage.setItem('images', imagesUrls);
     }
 
     getItem() {
